@@ -432,6 +432,18 @@ body > p:last-child {
   }
 }
 
+@keyframes mobile-section-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @supports (animation-timeline: view()) {
   h2,
   h2 + p,
@@ -444,6 +456,14 @@ body > p:last-child {
     animation-timeline: view();
     animation-range: entry 0% cover 48%;
   }
+}
+
+#con ~ h4,
+#con ~ a {
+  opacity: 1;
+  filter: none;
+  transform: none;
+  animation: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -501,6 +521,19 @@ body > p:last-child {
 
   body > ul:first-of-type li:last-child a {
     padding: 10px 12px;
+  }
+
+  @supports (animation-timeline: view()) {
+    h2,
+    h2 + p,
+    h2 + p + p,
+    h2 + p + ul,
+    h2 + ul,
+    h2 ~ h4,
+    #con ~ a {
+      animation-name: mobile-section-reveal;
+      animation-range: entry 0% cover 24%;
+    }
   }
 
   hr {
