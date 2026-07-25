@@ -167,7 +167,18 @@ h2::before {
   display: inline-block;
   padding: 8px 12px;
   border: 1px solid var(--primary);
+  background: var(--primary);
+  color: var(--surface);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
   text-decoration: none;
+  text-transform: uppercase;
+}
+
+#about + p + p a:hover,
+#about + p + p a:focus-visible {
+  background: var(--tertiary);
+  color: var(--primary);
 }
 
 #skills + p {
@@ -421,13 +432,11 @@ body > p:last-child {
 @keyframes section-reveal {
   from {
     opacity: 0;
-    filter: blur(2px);
     transform: translateY(38px);
   }
 
   to {
     opacity: 1;
-    filter: blur(0);
     transform: translateY(0);
   }
 }
@@ -514,9 +523,17 @@ body > p:last-child {
     top: 16px;
     right: 20px;
     left: 20px;
-    justify-content: flex-start;
-    gap: 8px 12px;
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px 8px;
     line-height: 1.3;
+  }
+
+  body > ul:first-of-type li:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
   }
 
   body > ul:first-of-type li:last-child a {
