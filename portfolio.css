@@ -429,6 +429,28 @@ body > p:last-child {
   text-align: right;
 }
 
+/* Static presentation: keep every section sharp and fully visible. */
+h2,
+h2 + p,
+h2 + p + p,
+h2 + p + ul,
+h2 + ul,
+h2 ~ h4,
+#con ~ a {
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+#con ~ h4 {
+  color: var(--primary);
+}
+
+#con ~ a img {
+  filter: none;
+}
+
 @keyframes section-reveal {
   from {
     opacity: 0;
@@ -610,4 +632,18 @@ body > p:last-child {
   #pro + ul li::before {
     margin-bottom: 24px;
   }
+}
+
+/* Scroll effects are intentionally disabled: keep all content sharp. */
+h2,
+h2 + p,
+h2 + p + p,
+h2 + p + ul,
+h2 + ul,
+h2 ~ h4,
+#con ~ a {
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+  animation: none !important;
 }
