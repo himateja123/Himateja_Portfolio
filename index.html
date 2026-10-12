@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#0b172a">
 <meta name="description" content="Himateja — Java Full Stack Developer creating practical web and AI applications.">
 <title>Himateja | Full Stack Developer</title>
-<link rel="stylesheet" href="portfolio.css?v=20261012-4">
+<link rel="stylesheet" href="portfolio.css?v=20261012-5">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -29,5 +29,16 @@
 <footer><div class="wrap footer-top"><a class="brand foot-brand" href="#home"><span class="mark">H</span> Himateja<span class="blue">.</span></a><p>Designed with intent. Built with curiosity.</p><nav><a href="https://github.com/himateja123" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/himateja-p/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="mailto:himatejaperla@gmail.com">Email ↗</a></nav></div><div class="wrap footer-bottom"><span>© 2026 Himateja</span><a href="#home">Back to top ↑</a></div></footer>
 <script>
 const menuButton=document.querySelector('.menu');const nav=document.querySelector('.nav');menuButton.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');}));
+// TAP-inspired scroll motion: a slim reading-progress bar and gentle section reveals.
+const scrollProgress=document.createElement('div');scrollProgress.className='scroll-progress';scrollProgress.setAttribute('aria-hidden','true');document.body.prepend(scrollProgress);
+const updateScrollProgress=()=>{const maxScroll=document.documentElement.scrollHeight-window.innerHeight;scrollProgress.style.transform='scaleX('+(maxScroll>0?window.scrollY/maxScroll:0)+')';};
+window.addEventListener('scroll',updateScrollProgress,{passive:true});window.addEventListener('resize',updateScrollProgress);updateScrollProgress();
+if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+ document.documentElement.classList.add('js-motion');
+ const motionTargets=document.querySelectorAll('.section .heading, .about-grid > *, .skill-grid article, .project, .education, .contact-inner > div, .strip-inner');
+ motionTargets.forEach((el,index)=>{el.classList.add('reveal');if(el.matches('.about-grid > *'))el.classList.add(index%2===0?'reveal-left':'reveal-right');if(el.matches('.contact-inner > div'))el.classList.add(el.matches(':first-child')?'reveal-left':'reveal-right');if(el.matches('.skill-grid article, .project'))el.classList.add('reveal-zoom');if(el.matches('.skill-grid article, .project'))el.style.setProperty('--reveal-delay',((Array.from(el.parentElement.children).indexOf(el)%4)*85)+'ms');});
+ const revealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target);}});},{threshold:0.12,rootMargin:'0px 0px -36px 0px'});
+ motionTargets.forEach(el=>revealObserver.observe(el));
+}
 </script>
 </body></html>
